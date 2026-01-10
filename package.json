@@ -10,7 +10,7 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "test": "jest --watchAll",
-    "test-once": "jest",
+    "test-once": "jest --passWithNoTests",
     "prepare": "husky"
   },
   "dependencies": {
