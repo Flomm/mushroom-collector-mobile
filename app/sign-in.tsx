@@ -1,11 +1,15 @@
 import { useSession } from '@/context/auth-context';
 import { router } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import { Text, View } from 'react-native';
 
-export default function LoginScreen() {
+export default function SignInScreen() {
   const { signIn } = useSession();
+  const { t } = useTranslation();
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>{t('test')}</Text>
       <Text
         onPress={() => {
           console.warn('clicker');
