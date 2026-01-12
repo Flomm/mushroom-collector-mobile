@@ -5,7 +5,6 @@ import engTranslation from '../assets/i18n/en.json';
 import huTranslation from '../assets/i18n/hu.json';
 
 const deviceLanguage = getLocales()[0].languageCode;
-console.warn(deviceLanguage);
 
 // eslint-disable-next-line import/no-named-as-default-member
 i18n.use(initReactI18next).init({
