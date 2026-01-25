@@ -22,7 +22,8 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "googleServicesFile": "./config/google-services.json"
+      "googleServicesFile": "./config/google-services.json",
+      "userInterfaceStyle": "automatic"
     },
     "plugins": [
       "expo-router",
@@ -41,7 +42,8 @@
       "@react-native-firebase/app",
       "@react-native-firebase/auth",
       "expo-secure-store",
-      "expo-localization"
+      "expo-localization",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true,
