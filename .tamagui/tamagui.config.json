@@ -28633,15 +28633,15 @@
     },
     "themes": {
       "dark": {
-        "mainBackgroundLight": "red",
-        "mainBackgroundDark": "#E9E2D4",
-        "mainBackground": "red",
+        "mainBackgroundLight": "white",
+        "mainBackgroundDark": "black",
+        "mainBackground": "white",
         "id": "dark"
       },
       "light": {
-        "mainBackgroundLight": "red",
-        "mainBackgroundDark": "#E9E2D4",
-        "mainBackground": "#E9E2D4",
+        "mainBackgroundLight": "white",
+        "mainBackgroundDark": "black",
+        "mainBackground": "black",
         "id": "light"
       }
     },
@@ -29401,14 +29401,14 @@
           "isVar": true,
           "key": "$mainBackgroundLight",
           "name": "c-mainBackgroundLight",
-          "val": "red",
+          "val": "white",
           "variable": ""
         },
         "mainBackgroundDark": {
           "isVar": true,
           "key": "$mainBackgroundDark",
           "name": "c-mainBackgroundDark",
-          "val": "#E9E2D4",
+          "val": "black",
           "variable": ""
         }
       }
@@ -29517,14 +29517,14 @@
         "isVar": true,
         "key": "$mainBackgroundDark",
         "name": "c-mainBackgroundDark",
-        "val": "#E9E2D4",
+        "val": "black",
         "variable": ""
       },
       "$color.mainBackgroundLight": {
         "isVar": true,
         "key": "$mainBackgroundLight",
         "name": "c-mainBackgroundLight",
-        "val": "red",
+        "val": "white",
         "variable": ""
       },
       "$radius.0": {

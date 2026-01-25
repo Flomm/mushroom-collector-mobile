@@ -44,7 +44,7 @@ export default function RootLayout() {
                 <Stack.Screen name='modal' options={{ presentation: 'modal', title: 'Modal' }} />
               </Stack.Protected>
               <Stack.Protected guard={!session}>
-                <Stack.Screen name='sign-in' options={{ headerShown: false }} />
+                <Stack.Screen name='(auth)' options={{ headerShown: false }} />
               </Stack.Protected>
             </Stack>
             <StatusBar style='auto' />
