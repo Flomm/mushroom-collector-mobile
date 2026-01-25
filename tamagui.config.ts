@@ -3,7 +3,7 @@ import { createTamagui, createTokens } from 'tamagui';
 
 const MCTamaguiTokens = createTokens({
   color: {
-    mainBackgroundLight: 'white',
+    mainBackgroundLight: '#E8E3d4',
     mainBackgroundDark: 'black'
   }
   // ... see configuration docs for required tokens
