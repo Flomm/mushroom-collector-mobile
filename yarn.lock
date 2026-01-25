@@ -1056,7 +1056,7 @@
     "@eslint/core" "^0.17.0"
     levn "^0.4.1"
 
-"@expo-google-fonts/inter@^0.4.2":
+"@expo-google-fonts/inter@0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/inter/-/inter-0.4.2.tgz#2d37ffb1cb16600cff616b6c4c0efee9b6c47c28"
   integrity sha512-syfiImMaDmq7cFi0of+waE2M4uSCyd16zgyWxdPOY7fN2VBmSLKEzkfbZgeOjJq61kSqPBNNtXjggiQiSD6gMQ==
@@ -6059,7 +6059,7 @@ expo-keep-awake@~15.0.8:
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-15.0.8.tgz#911c5effeba9baff2ccde79ef0ff5bf856215f8d"
   integrity sha512-YK9M1VrnoH1vLJiQzChZgzDvVimVoriibiDIFLbQMpjYBnvyfUeHJcin/Gx1a+XgupNXy92EQJLgI/9ZuXajYQ==
 
-expo-linear-gradient@~15.0.8:
+expo-linear-gradient@15.0.8:
   version "15.0.8"
   resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-15.0.8.tgz#17cb49522699d2a033eae93146bc820ef180f4f8"
   integrity sha512-V2d8Wjn0VzhPHO+rrSBtcl+Fo+jUUccdlmQ6OoL9/XQB7Qk3d9lYrqKDJyccwDxmQT10JdST3Tmf2K52NLc3kw==
@@ -9063,6 +9063,11 @@ react-is@^19.1.0:
   version "19.2.3"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-19.2.3.tgz#eec2feb69c7fb31f77d0b5c08c10ae1c88886b29"
   integrity sha512-qJNJfu81ByyabuG7hPFEbXqNcWSU3+eVus+KJs+0ncpGfMyYdvSmxiJxbWR65lYi1I+/0HBcliO029gc4F+PnA==
+
+react-native-edge-to-edge@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-edge-to-edge/-/react-native-edge-to-edge-1.7.0.tgz#6999ee86febe920b9b4e730ec1f0eaf0c28f0003"
+  integrity sha512-ERegbsq28yoMndn/Uq49i4h6aAhMvTEjOfkFh50yX9H/dMjjCr/Tix/es/9JcPRvC+q7VzCMWfxWDUb6Jrq1OQ==
 
 react-native-gesture-handler@2.28.0:
   version "2.28.0"
