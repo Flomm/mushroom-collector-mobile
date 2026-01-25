@@ -1,16 +1,15 @@
 // import { getAuth, onAuthStateChanged } from '@react-native-firebase/auth';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
 import { SessionProvider, useSession } from '@/context/auth-context';
 import { SplashScreenController } from '@/functions/splash-controller';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Stack } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
 import { I18nextProvider } from 'react-i18next';
+import { useColorScheme } from 'react-native';
+import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-// import { useEffect } from 'react';
+import { TamaguiProvider } from 'tamagui';
 import i18nInstance from '../functions/i18n';
+import { config } from '../tamagui.config'; // your configuration
 
 export const unstable_settings = {
   anchor: '(tabs)'
@@ -24,6 +23,7 @@ export default function RootLayout() {
   // function handleAuthStateChanged(user) {
   //   console.warn(user);
   //   setUser(user);
+
   // }
 
   // useEffect(() => {
@@ -36,20 +36,19 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <I18nextProvider i18n={i18nInstance}>
         <SessionProvider>
-          <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+          <TamaguiProvider config={config} defaultTheme={colorScheme === 'dark' ? 'dark' : 'light'}>
             <SplashScreenController />
             <Stack>
               <Stack.Protected guard={!!session}>
                 <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
                 <Stack.Screen name='modal' options={{ presentation: 'modal', title: 'Modal' }} />
               </Stack.Protected>
-
               <Stack.Protected guard={!session}>
                 <Stack.Screen name='sign-in' options={{ headerShown: false }} />
               </Stack.Protected>
             </Stack>
             <StatusBar style='auto' />
-          </ThemeProvider>
+          </TamaguiProvider>
         </SessionProvider>
       </I18nextProvider>
     </SafeAreaProvider>
