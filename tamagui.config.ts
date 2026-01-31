@@ -11,8 +11,10 @@ export const config = createTamagui({
   tokens: {
     // ...defaultConfig.tokens,
     space: {
-      ...defaultConfig.tokens.space,
       ...MCTamaguiTokens.space
+    },
+    size: {
+      ...defaultConfig.tokens.size
     },
     radius: {
       ...defaultConfig.tokens.radius,

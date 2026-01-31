@@ -28,10 +28,6 @@ export const playFont = createFont({
     4: 0,
     8: -1
   },
-
-  // because android handles fonts differently, you need to map the weight
-  // to the actual name of the font in the font-file
-  // you can get the name with `otfinfo`: otfinfo --family Inter.ttf
   face: {
     400: { normal: 'Play_400Regular' },
     700: { normal: 'Play_700Bold' }
@@ -44,17 +40,30 @@ export const MCTamaguiTokens = createTokens({
     mainBackgroundDark: '#000000',
     secondaryBackgroundLight: '#F4EEE3',
     primaryTextColorLight: '#77583E',
-    primaryTextColorDark: '#FAF7EA',
+    primaryTextColorDark: '#FFFFFF',
     secondaryTextColorLight: '#FAF7EA',
-    secondaryTextColorDark: '#808080',
-    secondaryBackgroundDark: '#D3D3D3'
+    secondaryTextColorDark: '#FAF7EA',
+    secondaryBackgroundDark: '#D3D3D3',
+    shadowColorLight: '#000000',
+    shadowColorDark: '#FFFFFF',
+    gradientTopColorLight: '#9DAA63',
+    gradientMidColorLight: '#8FA055',
+    gradientBottomColorLight: '#6B854D',
+    gradientTopColorDark: '#3c6297',
+    gradientMidColorDark: '#153b66',
+    gradientBottomColorDark: '#33127b'
   },
   // margin="$sm"
   space: {
-    sm: 4,
-    md: 8,
-    lg: 12
+    1: 4,
+    2: 8,
+    3: 12,
+    4: 16,
+    5: 24
   },
   // radius="$none"
-  radius: { none: 0, sm: 3 }
+  radius: { none: 0, sm: 3 },
+  size: {
+    buttonSize: 40
+  }
 });

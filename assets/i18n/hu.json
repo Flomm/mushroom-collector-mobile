@@ -2,7 +2,11 @@
   "test": "test_hu",
   "auth": {
     "sign-in": {
-      "welcome": "Üdv, Gombász!"
+      "welcome": "Üdv, Gombász!",
+      "login": "Bejelentkezés",
+      "sign-up": "Regisztráció",
+      "google": "Google belépés",
+      "facebook": "Facebook belépés"
     }
   }
 }

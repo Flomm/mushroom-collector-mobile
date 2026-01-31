@@ -7,7 +7,7 @@ export default function RegistrationScreen() {
   return (
     <View bg='$mainBackgroundLight' flex={1} justify={'center'} items={'center'}>
       <Text fontSize='$1'>{t('test')}</Text>
-      <Text>Register</Text>
+      <Text>Registerr</Text>
     </View>
   );
 }
