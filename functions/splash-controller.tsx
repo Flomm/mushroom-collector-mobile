@@ -1,5 +1,7 @@
 import { useSession } from '@/context/auth-context';
-import { Inter_400Regular, Inter_900Black, useFonts } from '@expo-google-fonts/inter';
+import { Play_400Regular } from '@expo-google-fonts/play/400Regular';
+import { Play_700Bold } from '@expo-google-fonts/play/700Bold';
+import { useFonts } from '@expo-google-fonts/play/useFonts';
 import { SplashScreen } from 'expo-router';
 
 SplashScreen.preventAutoHideAsync();
@@ -7,8 +9,8 @@ SplashScreen.preventAutoHideAsync();
 export function SplashScreenController() {
   const { isLoading: authLoading } = useSession();
   const [fontsLoaded] = useFonts({
-    Inter_400Regular,
-    Inter_900Black
+    Play_400Regular,
+    Play_700Bold
   });
 
   if (!authLoading && fontsLoaded) {
