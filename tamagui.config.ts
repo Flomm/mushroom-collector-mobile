@@ -1,37 +1,44 @@
-import { defaultConfig } from '@tamagui/config/v4';
-import { createTamagui, createTokens } from 'tamagui';
-
-const MCTamaguiTokens = createTokens({
-  color: {
-    mainBackgroundLight: '#E8E3d4',
-    mainBackgroundDark: 'black'
-  }
-  // ... see configuration docs for required tokens
-});
+import { defaultConfig } from '@tamagui/config/v5';
+import { createTamagui } from '@tamagui/core';
+import { allThemes } from './theme/themes';
+import { MCTamaguiTokens, playFont } from './theme/tokens';
 
 export const config = createTamagui({
   ...defaultConfig,
   media: {
     ...defaultConfig.media
-    // add your own media queries here, if wanted
   },
   tokens: {
-    ...defaultConfig.tokens,
-    ...MCTamaguiTokens
+    // ...defaultConfig.tokens,
+    space: {
+      ...defaultConfig.tokens.space,
+      ...MCTamaguiTokens.space
+    },
+    radius: {
+      ...defaultConfig.tokens.radius,
+      ...MCTamaguiTokens.radius
+    },
+    color: {
+      ...MCTamaguiTokens.color
+    },
+    zIndex: {
+      ...defaultConfig.tokens.zIndex,
+      ...MCTamaguiTokens.zIndex
+    }
+  },
+  fonts: {
+    body: playFont,
+    heading: playFont
   },
   themes: {
-    dark: {
-      mainBackground: MCTamaguiTokens.color.mainBackgroundLight
-    },
-    light: {
-      mainBackground: MCTamaguiTokens.color.mainBackgroundDark
-    }
+    light: allThemes.light,
+    dark: allThemes.dark
   }
 });
 
 type OurConfig = typeof config;
 
-declare module 'tamagui' {
+declare module '@tamagui/core' {
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface TamaguiCustomConfig extends OurConfig {}
 }
