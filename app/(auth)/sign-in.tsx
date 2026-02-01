@@ -8,15 +8,19 @@ import { isNil } from '@/functions/is-nil';
 import { SignInData } from '@/models/sign-in-data.type';
 import { SignInFormSchema } from '@/validation/schemas/sign-in-form.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { tokens } from '@tamagui/config/v5';
 import { Text, View } from '@tamagui/core';
 import SvgUri from 'expo-svg-uri';
+import { useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { TextInput } from 'react-native';
 
 export default function SignInScreen() {
   const { t } = useTranslation();
-  const { control } = useForm<SignInData>({
+
+  const passwordRef = useRef<TextInput | null>(null);
+
+  const { control, trigger, handleSubmit } = useForm<SignInData>({
     resolver: zodResolver(SignInFormSchema),
     defaultValues: {
       email: '',
@@ -25,10 +29,14 @@ export default function SignInScreen() {
     mode: 'onChange'
   });
 
+  const onSubmit = (formData: SignInData) => {
+    console.warn(formData);
+  };
+
   return (
     <ScreenWrapper>
       <SvgUri width={150} height={150} source={require('@/assets/icons/app-auth.svg')} />
-      <Text color='$primaryTextColor' marginBlockEnd='$2' fontWeight='700' fontFamily='$body' fontSize='$7'>
+      <Text color='$primaryTextColor' fontWeight='700' fontFamily='$body' fontSize='$7'>
         {t('auth:sign-in:welcome')}
       </Text>
       <View flex={1} width='100%' justify='center'>
@@ -46,7 +54,11 @@ export default function SignInScreen() {
                     placeholder='auth:sign-in:email'
                     value={value}
                     setValue={onChange}
-                    testID='x'
+                    testID='email-control'
+                    onSubmitEditing={() => {
+                      passwordRef.current?.focus();
+                      trigger('email');
+                    }}
                     hasError={!isNil(error)}
                   />
                 </ValidatedController>
@@ -65,14 +77,16 @@ export default function SignInScreen() {
                     placeholder='auth:sign-in:password'
                     value={value}
                     setValue={onChange}
-                    testID='x'
+                    testID='password-control'
                     hasError={!isNil(error)}
+                    inputRef={passwordRef}
+                    onSubmitEditing={handleSubmit(onSubmit)}
                   />
                 </ValidatedController>
               );
             }}
           />
-          <Button onPress={() => console.warn(tokens.space)} testID='x' text='auth:sign-in:login' />
+          <Button onPress={handleSubmit(onSubmit)} testID='login_button' text='auth:sign-in:login' />
 
           <Divider />
 

@@ -17,7 +17,9 @@ export const InputControl: FC<InputControlProps> = ({
   iconFill,
   type,
   marginVertical = 4,
-  hasError = false
+  hasError = false,
+  onSubmitEditing,
+  inputRef
 }) => {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -65,6 +67,8 @@ export const InputControl: FC<InputControlProps> = ({
         placeholder={t(placeholder ?? '')}
         value={value}
         onChangeText={setValue}
+        onSubmitEditing={onSubmitEditing}
+        ref={inputRef}
       />
     </View>
   );
