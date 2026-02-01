@@ -1,7 +1,7 @@
 import { defaultConfig } from '@tamagui/config/v5';
 import { createTamagui } from '@tamagui/core';
-import { allThemes } from './theme/themes';
-import { MCTamaguiTokens, playFont } from './theme/tokens';
+import { allThemes } from './styles/themes';
+import { MCTamaguiTokens, playFont } from './styles/tokens';
 
 export const config = createTamagui({
   ...defaultConfig,

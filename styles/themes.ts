@@ -8,7 +8,8 @@ const light = {
   shadowColor: MCTamaguiTokens.color.shadowColorLight,
   gradientTopColor: MCTamaguiTokens.color.gradientTopColorLight,
   gradientMidColor: MCTamaguiTokens.color.gradientMidColorLight,
-  gradientBottomColor: MCTamaguiTokens.color.gradientBottomColorLight
+  gradientBottomColor: MCTamaguiTokens.color.gradientBottomColorLight,
+  errorColor: MCTamaguiTokens.color.errorColor
 };
 
 type BaseTheme = typeof light;
@@ -21,7 +22,8 @@ const dark: BaseTheme = {
   shadowColor: MCTamaguiTokens.color.shadowColorDark,
   gradientTopColor: MCTamaguiTokens.color.gradientTopColorDark,
   gradientMidColor: MCTamaguiTokens.color.gradientMidColorDark,
-  gradientBottomColor: MCTamaguiTokens.color.gradientBottomColorDark
+  gradientBottomColor: MCTamaguiTokens.color.gradientBottomColorDark,
+  errorColor: MCTamaguiTokens.color.errorColor
 };
 
 export const allThemes = {

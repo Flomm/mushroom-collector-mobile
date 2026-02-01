@@ -6,7 +6,13 @@
       "login": "Bejelentkezés",
       "sign-up": "Regisztráció",
       "google": "Google belépés",
-      "facebook": "Facebook belépés"
+      "facebook": "Facebook belépés",
+      "email": "E-mail",
+      "password": "Jelszó",
+      "forgot_password": "Elfelejtett jelszó"
     }
+  },
+  "validation_errors": {
+    "required": "Kötelező"
   }
 }
