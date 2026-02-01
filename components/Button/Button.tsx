@@ -14,10 +14,8 @@ const StyledGradient = styled(LinearGradient, {
   items: 'center',
   justify: 'center',
   flexDirection: 'row',
-  pb: '$4',
-  pt: '$4',
-  paddingEnd: '$4',
-  paddingStart: '$4',
+  py: '$4',
+  px: '$4',
   borderTopLeftRadius: '$6',
   borderTopRightRadius: '$6',
   borderBottomLeftRadius: '$6',
@@ -101,7 +99,7 @@ export const Button: FC<ButtonProps> = ({
                   fontFamily='$body'
                   fontWeight='700'
                   fontSize='$5'>
-                  {t(text)}
+                  {`  ${t(text)}  `}
                 </Text>
               )}
             </View>

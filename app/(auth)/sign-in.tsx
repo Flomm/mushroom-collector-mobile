@@ -37,7 +37,7 @@ export default function SignInScreen() {
     <ScreenWrapper>
       <SvgUri width={150} height={150} source={require('@/assets/icons/app-auth.svg')} />
       <Text color='$primaryTextColor' fontWeight='700' fontFamily='$body' fontSize='$7'>
-        {t('auth:sign-in:welcome')}
+        {`  ${t('auth:sign-in:welcome')}  `}
       </Text>
       <View flex={1} width='100%' justify='center'>
         <Card>
