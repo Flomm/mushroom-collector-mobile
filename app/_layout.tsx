@@ -14,21 +14,8 @@ export const unstable_settings = {
 };
 
 export default function RootLayout() {
-  // const [user, setUser] = useState();
   const { session } = useSession();
   const { bottom, top } = useSafeAreaInsets();
-
-  // function handleAuthStateChanged(user) {
-  //   console.warn(user);
-  //   setUser(user);
-
-  // }
-
-  // useEffect(() => {
-  //   console.warn(getAuth());
-  //   const subscriber = onAuthStateChanged(getAuth(), handleAuthStateChanged);
-  //   return subscriber; // unsubscribe on unmount
-  // }, []);
 
   return (
     <SafeAreaProvider>
