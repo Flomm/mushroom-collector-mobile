@@ -1045,6 +1045,7 @@
         "gradientTopColorDark": "#3c6297",
         "gradientMidColorDark": "#153b66",
         "gradientBottomColorDark": "#33127b",
+        "errorColor": "#FF4047",
         "mainBackground": "#000000",
         "secondaryBackground": "#D3D3D3",
         "primaryTextColor": "#FFFFFF",
@@ -1072,6 +1073,7 @@
         "gradientTopColorDark": "#3c6297",
         "gradientMidColorDark": "#153b66",
         "gradientBottomColorDark": "#33127b",
+        "errorColor": "#FF4047",
         "mainBackground": "#E8E3d4",
         "secondaryBackground": "#F4EEE3",
         "primaryTextColor": "#77583E",
@@ -1552,6 +1554,13 @@
           "name": "c-gradientBottomColorDark",
           "val": "#33127b",
           "variable": ""
+        },
+        "errorColor": {
+          "isVar": true,
+          "key": "$errorColor",
+          "name": "c-errorColor",
+          "val": "#FF4047",
+          "variable": ""
         }
       },
       "zIndex": {
@@ -1699,6 +1708,13 @@
     "defaultFont": "body",
     "fontSizeTokens": {},
     "specificTokens": {
+      "$color.errorColor": {
+        "isVar": true,
+        "key": "$errorColor",
+        "name": "c-errorColor",
+        "val": "#FF4047",
+        "variable": ""
+      },
       "$color.gradientBottomColorDark": {
         "isVar": true,
         "key": "$gradientBottomColorDark",

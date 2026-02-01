@@ -1,10 +1,11 @@
 import { SvgList } from '@/models/svg-uri';
+import { GlobalStyles } from '@/styles/global-styles';
 import { getTokens, styled, Text, useTheme, View } from '@tamagui/core';
 import { LinearGradient } from 'expo-linear-gradient';
 import SvgUri from 'expo-svg-uri';
 import React, { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ActivityIndicator, ColorValue, Pressable, StyleSheet } from 'react-native';
+import { ActivityIndicator, ColorValue, Pressable } from 'react-native';
 import { ButtonProps } from './button-props.type';
 
 const StyledGradient = styled(LinearGradient, {
@@ -13,7 +14,8 @@ const StyledGradient = styled(LinearGradient, {
   items: 'center',
   justify: 'center',
   flexDirection: 'row',
-  paddingBlock: '$4',
+  pb: '$4',
+  pt: '$4',
   paddingEnd: '$4',
   paddingStart: '$4',
   borderTopLeftRadius: '$6',
@@ -66,7 +68,7 @@ export const Button: FC<ButtonProps> = ({
       {({ pressed }) => (
         <View
           style={[
-            styles.shadowWrapper,
+            GlobalStyles.shadowWrapper,
             {
               borderRadius: getTokens().radius[6].val
             }
@@ -97,7 +99,8 @@ export const Button: FC<ButtonProps> = ({
                 <Text
                   color={type === 'gradient' ? '$secondaryTextColor' : '$primaryTextColor'}
                   fontFamily='$body'
-                  fontSize='$4'>
+                  fontWeight='700'
+                  fontSize='$5'>
                   {t(text)}
                 </Text>
               )}
@@ -108,14 +111,3 @@ export const Button: FC<ButtonProps> = ({
     </Pressable>
   );
 };
-
-const styles = StyleSheet.create({
-  shadowWrapper: {
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 3,
-    backgroundColor: 'white',
-    overflow: 'visible'
-  }
-});
