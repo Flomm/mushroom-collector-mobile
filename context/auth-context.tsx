@@ -1,15 +1,16 @@
-import { getAuth, signInWithEmailAndPassword } from '@react-native-firebase/auth';
+import { SignInData } from '@/models/sign-in-data.type';
+import { FirebaseAuthTypes, getAuth, signInWithEmailAndPassword } from '@react-native-firebase/auth';
 import { createContext, use, type PropsWithChildren } from 'react';
 import { useStorageState } from '../hooks/use-storage-state';
 
 const AuthContext = createContext<{
-  signIn: () => void;
+  signIn: (signInData: SignInData) => Promise<void | FirebaseAuthTypes.UserCredential>;
   signOut: () => void;
   signup: () => void;
   session?: string | null;
   isLoading: boolean;
 }>({
-  signIn: () => null,
+  signIn: () => Promise.resolve(),
   signOut: () => null,
   signup: () => null,
   session: null,
@@ -32,16 +33,9 @@ export function SessionProvider({ children }: PropsWithChildren) {
   return (
     <AuthContext.Provider
       value={{
-        signIn: () => {
-          // Perform sign-in logic here
-          setSession('xxx');
-          signInWithEmailAndPassword(getAuth(), 'test@test.hu', 'test123').catch(e => {
-            console.warn(e);
-          });
-        },
-        signOut: () => {
-          setSession(null);
-        },
+        signIn: (signInData: SignInData) =>
+          signInWithEmailAndPassword(getAuth(), signInData.email, signInData.password),
+        signOut: () => setSession(null),
         signup: () => {},
         session,
         isLoading

@@ -14,5 +14,10 @@
   },
   "validation_errors": {
     "required": "Kötelező"
+  },
+  "firebase_errors": {
+    "auth/invalid-email": "Hibás e-mail formátum",
+    "auth/invalid-credential": "Nem megfelelő e-mail vagy jelszó",
+    "unknown": "Váratlan authentikációs hiba"
   }
 }
