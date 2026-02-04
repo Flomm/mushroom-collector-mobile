@@ -2,9 +2,9 @@ import { SvgList } from '@/models/svg-uri';
 import { GlobalStyles } from '@/styles/global-styles';
 import { getTokens, useTheme, View } from '@tamagui/core';
 import SvgUri from 'expo-svg-uri';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TextInput } from 'react-native';
+import { Pressable, TextInput } from 'react-native';
 import { InputControlProps } from './input-control-props.type';
 
 export const InputControl: FC<InputControlProps> = ({
@@ -19,10 +19,13 @@ export const InputControl: FC<InputControlProps> = ({
   marginVertical = 4,
   hasError = false,
   onSubmitEditing,
-  inputRef
+  inputRef,
+  secure
 }) => {
   const { t } = useTranslation();
   const theme = useTheme();
+
+  const [inputReadable, setInputReadable] = useState<boolean>(true);
 
   return (
     <View
@@ -64,12 +67,40 @@ export const InputControl: FC<InputControlProps> = ({
           fontSize: getTokens().size.$1.val,
           flex: 1
         }}
+        editable={!disabled}
         placeholder={t(placeholder ?? '')}
         value={value}
         onChangeText={setValue}
         onSubmitEditing={onSubmitEditing}
         ref={inputRef}
+        secureTextEntry={!inputReadable}
       />
+      {secure && (
+        <Pressable onPress={() => setInputReadable(prev => !prev)}>
+          <SvgUri
+            style={{
+              marginEnd: getTokens().space[1].val
+            }}
+            width={30}
+            height={30}
+            stroke={
+              !iconFill
+                ? 'transparent'
+                : type === 'secondary'
+                  ? theme.secondaryTextColor.val
+                  : theme.primaryTextColor.val
+            }
+            fill={
+              iconFill
+                ? 'transparent'
+                : type === 'secondary'
+                  ? theme.secondaryTextColor.val
+                  : theme.primaryTextColor.val
+            }
+            source={inputReadable ? SvgList['notVisible'] : SvgList['visible']}
+          />
+        </Pressable>
+      )}
     </View>
   );
 };

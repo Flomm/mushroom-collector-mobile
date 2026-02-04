@@ -17,4 +17,5 @@ export type InputControlProps = {
   hasError?: boolean;
   onSubmitEditing?: (e: TextInputSubmitEditingEvent) => void;
   inputRef?: RefObject<TextInput | null>;
+  secure?: boolean;
 };
