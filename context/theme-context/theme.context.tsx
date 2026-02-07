@@ -13,7 +13,7 @@ const ThemeContext = createContext<{
 export const useAppTheme = (): boolean => {
   const value = useContext(ThemeContext);
   if (!value) {
-    throw new Error('useSession must be wrapped in a <SessionProvider />');
+    throw new Error('useAppTheme must be wrapped in a <ThemeProvider />');
   }
 
   return value.darkTheme;

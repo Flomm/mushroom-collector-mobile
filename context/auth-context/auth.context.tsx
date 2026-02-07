@@ -16,12 +16,12 @@ import { AuthContextData } from './auth.context-data.type';
 const AuthContext = createContext<{
   signIn: (signInData: SignInData) => Promise<void | FirebaseAuthTypes.UserCredential>;
   signOut: () => void;
-  signup: () => void;
+  signUp: () => void;
   authStateData: AuthContextData;
 }>({
   signIn: () => Promise.resolve(),
   signOut: () => null,
-  signup: () => null,
+  signUp: () => null,
   authStateData: {
     loading: true,
     loggedIn: false,
@@ -32,7 +32,7 @@ const AuthContext = createContext<{
 export function useAuthContext() {
   const value = use(AuthContext);
   if (!value) {
-    throw new Error('useSession must be wrapped in a <SessionProvider />');
+    throw new Error('useAuthContext must be wrapped in a <AuthProvider />');
   }
 
   return value;
@@ -56,11 +56,15 @@ export function AuthProvider({ children }: PropsWithChildren) {
     authError
   });
 
+  const handleAuthFailure = useCallback(() => {
+    setAuthData(null);
+    setAuthStateData(createAuthStateData(false, false));
+  }, [setAuthData, setAuthStateData]);
+
   const handleAuthStateChanged = useCallback(
     async (user: FirebaseAuthTypes.User | null) => {
       if (isNil(user)) {
-        setAuthData(null);
-        setAuthStateData(createAuthStateData(false, false));
+        handleAuthFailure();
         return;
       }
       setAuthData({
@@ -69,7 +73,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       });
       setAuthStateData(createAuthStateData(false, true));
     },
-    [setAuthData]
+    [setAuthData, handleAuthFailure]
   );
 
   const signIn = async (signInData: SignInData): Promise<void> => {
@@ -77,8 +81,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       setAuthStateData(createAuthStateData(true, false));
       const userResponse = await signInWithEmailAndPassword(getAuth(), signInData.email, signInData.password);
       if (isNil(userResponse)) {
-        setAuthData(null);
-        setAuthStateData(createAuthStateData(false, false));
+        handleAuthFailure();
         return;
       }
       setAuthData({
@@ -97,12 +100,10 @@ export function AuthProvider({ children }: PropsWithChildren) {
     setAuthStateData(createAuthStateData(true, true));
     try {
       await firebaseSignOut(getAuth());
-      setAuthData(null);
-      setAuthStateData(createAuthStateData(false, false));
+      handleAuthFailure();
     } catch (e: any) {
       console.error('Logout failed: ', e);
-      setAuthData(null);
-      setAuthStateData(createAuthStateData(false, false));
+      handleAuthFailure();
     } finally {
       router.replace('/(auth)/sign-in');
     }
@@ -118,7 +119,9 @@ export function AuthProvider({ children }: PropsWithChildren) {
       value={{
         signIn,
         signOut,
-        signup: () => {},
+        signUp: () => {
+          console.warn('SIGNUP');
+        },
         authStateData
       }}>
       {children}

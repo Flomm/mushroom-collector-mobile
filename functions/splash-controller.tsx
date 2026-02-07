@@ -13,7 +13,7 @@ export function SplashScreenController() {
     Play_700Bold
   });
 
-  if (authStateData.loggedIn && fontsLoaded) {
+  if (!authStateData.loading && fontsLoaded) {
     SplashScreen.hide();
   }
 
