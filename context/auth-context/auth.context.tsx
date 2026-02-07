@@ -11,7 +11,7 @@ import {
 } from '@react-native-firebase/auth';
 import { router } from 'expo-router';
 import { createContext, use, useCallback, useEffect, useState, type PropsWithChildren } from 'react';
-import { AuthContextData } from './auth-context-data.type';
+import { AuthContextData } from './auth.context-data.type';
 
 const AuthContext = createContext<{
   signIn: (signInData: SignInData) => Promise<void | FirebaseAuthTypes.UserCredential>;
@@ -29,7 +29,6 @@ const AuthContext = createContext<{
   }
 });
 
-// Use this hook to access the user info.
 export function useAuthContext() {
   const value = use(AuthContext);
   if (!value) {
@@ -87,7 +86,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
         idToken: 'test'
       });
       setAuthStateData(createAuthStateData(false, true));
-      router.replace('/(tabs)/index');
+      router.replace('/');
     } catch (e: any) {
       const actualErrorCode = handledFireBaseErrors.includes(e.code) ? e.code : 'unknown';
       setAuthStateData(createAuthStateData(false, false, `firebase_errors:${actualErrorCode}`));
@@ -104,6 +103,8 @@ export function AuthProvider({ children }: PropsWithChildren) {
       console.error('Logout failed: ', e);
       setAuthData(null);
       setAuthStateData(createAuthStateData(false, false));
+    } finally {
+      router.replace('/(auth)/sign-in');
     }
   };
 

@@ -1,6 +1,6 @@
-import { styled } from '@tamagui/core';
 import { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { styled } from 'tamagui';
 
 const DividerComponent = styled(View, {
   borderBottomColor: '$primaryTextColor',

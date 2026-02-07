@@ -1,20 +1,20 @@
-import { Button } from '@/components/Button/Button';
+import { ButtonComponent } from '@/components/Button/ButtonComponent';
 import { Card } from '@/components/Card/Card';
 import { Divider } from '@/components/Divider/Divider';
 import { InputControl } from '@/components/InputControl/InputControl';
 import { ScreenWrapper } from '@/components/ScreenWrapper/ScreenWrapper';
 import ValidatedController from '@/components/ValidatedController/ValidatedController';
-import { useAuthContext } from '@/context/auth-context/auth-context';
+import { useAuthContext } from '@/context/auth-context/auth.context';
 import { isNil } from '@/functions/is-nil';
 import { SignInData } from '@/models/sign-in-data.type';
 import { SignInFormSchema } from '@/validation/schemas/sign-in-form.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Text, View } from '@tamagui/core';
 import SvgUri from 'expo-svg-uri';
 import { useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { TextInput } from 'react-native';
+import { Text, View } from 'tamagui';
 
 export default function SignInScreen() {
   const { t } = useTranslation();
@@ -89,7 +89,7 @@ export default function SignInScreen() {
               );
             }}
           />
-          <Button
+          <ButtonComponent
             loading={authStateData.loading}
             onPress={handleSubmit(onSubmit)}
             testID='login_button'
@@ -104,13 +104,13 @@ export default function SignInScreen() {
 
           <Divider />
 
-          <Button
+          <ButtonComponent
             disabled={authStateData.loading}
             onPress={() => console.warn('lol')}
             testID='x'
             text='auth:sign-in:sign-up'
           />
-          <Button
+          <ButtonComponent
             disabled={authStateData.loading}
             type='plain'
             onPress={() => console.warn('lol')}
@@ -118,7 +118,7 @@ export default function SignInScreen() {
             iconUri='google'
             text='auth:sign-in:google'
           />
-          <Button
+          <ButtonComponent
             disabled={authStateData.loading}
             onPress={() => console.warn('lol')}
             testID='x'

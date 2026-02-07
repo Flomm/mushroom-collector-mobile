@@ -1,8 +1,8 @@
 import { config } from '@/tamagui.config';
-import { TamaguiProvider, Theme } from '@tamagui/core';
 import { StatusBar } from 'expo-status-bar';
 import { createContext, useContext, type PropsWithChildren } from 'react';
 import { useColorScheme } from 'react-native';
+import { TamaguiProvider, Theme } from 'tamagui';
 
 const ThemeContext = createContext<{
   darkTheme: boolean;

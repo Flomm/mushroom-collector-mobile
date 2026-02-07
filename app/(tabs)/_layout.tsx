@@ -1,6 +1,6 @@
-import { Text } from '@tamagui/core';
 import { Tabs } from 'expo-router';
 import React from 'react';
+import { Text } from 'tamagui';
 
 export default function TabLayout() {
   return (

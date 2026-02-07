@@ -1,5 +1,5 @@
-import { styled, View } from '@tamagui/core';
 import { FC, PropsWithChildren } from 'react';
+import { styled, View } from 'tamagui';
 
 const CardComponent = styled(View, {
   width: '100%',

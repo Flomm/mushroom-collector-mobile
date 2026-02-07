@@ -1,7 +1,7 @@
 import { isNil } from '@/functions/is-nil';
-import { Text, View } from '@tamagui/core';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Text, View } from 'tamagui';
 import type { ValidatedControllerProps } from './validated-controller-props.type.ts';
 
 const validationHeight = 20;

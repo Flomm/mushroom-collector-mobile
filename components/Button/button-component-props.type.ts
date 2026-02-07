@@ -1,6 +1,6 @@
 import { SvgName } from '@/models/svg-uri';
 
-export type ButtonProps = {
+export type ButtonComponentProps = {
   text: string;
   testID: string;
   onPress: () => void;

@@ -1,5 +1,5 @@
 import { defaultConfig } from '@tamagui/config/v5';
-import { createTamagui } from '@tamagui/core';
+import { createTamagui } from 'tamagui';
 import { allThemes } from './styles/themes';
 import { MCTamaguiTokens, playFont } from './styles/tokens';
 
@@ -40,7 +40,7 @@ export const config = createTamagui({
 
 type OurConfig = typeof config;
 
-declare module '@tamagui/core' {
+declare module 'tamagui' {
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface TamaguiCustomConfig extends OurConfig {}
 }

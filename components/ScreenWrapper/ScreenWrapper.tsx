@@ -1,5 +1,5 @@
-import { styled } from '@tamagui/core';
 import { KeyboardAvoidingView } from 'react-native';
+import { styled } from 'tamagui';
 
 export const ScreenWrapper = styled(KeyboardAvoidingView, {
   bg: '$mainBackground',

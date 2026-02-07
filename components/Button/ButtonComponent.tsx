@@ -1,12 +1,12 @@
 import { SvgList } from '@/models/svg-uri';
 import { GlobalStyles } from '@/styles/global-styles';
-import { getTokens, styled, Text, useTheme, View } from '@tamagui/core';
 import { LinearGradient } from 'expo-linear-gradient';
 import SvgUri from 'expo-svg-uri';
 import React, { FC, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, ColorValue, Pressable } from 'react-native';
-import { ButtonProps } from './button-props.type';
+import { getTokens, styled, Text, useTheme, View } from 'tamagui';
+import { ButtonComponentProps } from './button-component-props.type';
 
 const StyledGradient = styled(LinearGradient, {
   width: '100%',
@@ -22,7 +22,7 @@ const StyledGradient = styled(LinearGradient, {
   borderBottomRightRadius: '$6'
 });
 
-export const Button: FC<ButtonProps> = ({
+export const ButtonComponent: FC<ButtonComponentProps> = ({
   onPress,
   text,
   testID,
@@ -62,6 +62,7 @@ export const Button: FC<ButtonProps> = ({
       disabled={disabled || loading}
       onPress={onPress}
       testID={testID}
+      accessibilityState={{ disabled: disabled || loading }}
       accessibilityLabel={t(accessibilityLabel ?? text)}>
       {({ pressed }) => (
         <View
@@ -79,6 +80,7 @@ export const Button: FC<ButtonProps> = ({
             <View flexDirection='row' items='center' width='75%' justify={iconUri ? 'flex-start' : 'center'}>
               {iconUri && !loading && (
                 <SvgUri
+                  testID={`${testID}-icon`}
                   style={{
                     marginEnd: getTokens().space[3].val
                   }}
@@ -90,11 +92,13 @@ export const Button: FC<ButtonProps> = ({
               )}
               {loading ? (
                 <ActivityIndicator
+                  testID={`${testID}-loader`}
                   size='large'
                   color={type === 'gradient' ? theme.secondaryTextColor.val : theme.primaryTextColor.val}
                 />
               ) : (
                 <Text
+                  testID={`${testID}-text`}
                   color={type === 'gradient' ? '$secondaryTextColor' : '$primaryTextColor'}
                   fontFamily='$body'
                   fontWeight='700'
