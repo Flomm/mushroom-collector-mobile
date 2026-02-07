@@ -87,8 +87,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
         idToken: 'test'
       });
       setAuthStateData(createAuthStateData(false, true));
-      router.replace('/');
-      console.warn('LOGGEDIN');
+      router.replace('/(tabs)/index');
     } catch (e: any) {
       const actualErrorCode = handledFireBaseErrors.includes(e.code) ? e.code : 'unknown';
       setAuthStateData(createAuthStateData(false, false, `firebase_errors:${actualErrorCode}`));
