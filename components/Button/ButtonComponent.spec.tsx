@@ -25,7 +25,9 @@ describe('ButtonComponent', () => {
   });
 
   it('should render correctly when text and icon are provided', () => {
-    renderWithTamagui(<ButtonComponent testID={mockTestId} onPress={mockOnPress} text={mockText} iconUri='facebook' />);
+    renderWithTamagui(
+      <ButtonComponent testID={mockTestId} type='plain' onPress={mockOnPress} text={mockText} iconUri='facebook' />
+    );
 
     const text = screen.getByTestId(`${mockTestId}-text`);
     expect(text).toBeVisible();

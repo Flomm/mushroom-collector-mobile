@@ -1,3 +1,4 @@
+import { isNil } from '@/functions/is-nil';
 import { SvgList } from '@/models/svg-uri';
 import { GlobalStyles } from '@/styles/global-styles';
 import SvgUri from 'expo-svg-uri';
@@ -25,7 +26,7 @@ export const InputControl: FC<InputControlProps> = ({
   const { t } = useTranslation();
   const theme = useTheme();
 
-  const [inputReadable, setInputReadable] = useState<boolean>(true);
+  const [inputReadable, setInputReadable] = useState<boolean>(isNil(secure) ? true : !secure);
 
   return (
     <View
@@ -46,6 +47,7 @@ export const InputControl: FC<InputControlProps> = ({
       ]}>
       {iconUri && (
         <SvgUri
+          testID={`${testID}-icon`}
           style={{
             marginEnd: getTokens().space[1].val
           }}
@@ -76,7 +78,7 @@ export const InputControl: FC<InputControlProps> = ({
         secureTextEntry={!inputReadable}
       />
       {secure && (
-        <Pressable onPress={() => setInputReadable(prev => !prev)}>
+        <Pressable testID={`${testID}-secure-pressable`} onPress={() => setInputReadable(prev => !prev)}>
           <SvgUri
             style={{
               marginEnd: getTokens().space[1].val
