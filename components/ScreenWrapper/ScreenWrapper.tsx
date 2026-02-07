@@ -6,5 +6,6 @@ export const ScreenWrapper = styled(KeyboardAvoidingView, {
   flex: 1,
   items: 'center',
   paddingEnd: '$3',
-  paddingStart: '$3'
+  paddingStart: '$3',
+  testID: 'screen-wrapper'
 });

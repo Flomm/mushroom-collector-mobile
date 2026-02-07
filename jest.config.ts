@@ -6,7 +6,7 @@ const config: Config = {
     'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@sentry/react-native|native-base|react-native-svg)'
   ],
   clearMocks: true,
-  setupFilesAfterEnv: ['<rootDir>/setup-jest.ts']
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.ts', 'jest-extended/all']
 };
 
 export default config;
