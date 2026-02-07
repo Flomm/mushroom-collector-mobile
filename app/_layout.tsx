@@ -1,5 +1,5 @@
-import { AuthProvider } from '@/context/auth-context/auth-context';
-import { ThemeProvider } from '@/context/theme-context';
+import { AuthProvider } from '@/context/auth-context/auth.context';
+import { ThemeProvider } from '@/context/theme-context/theme.context';
 import { SplashScreenController } from '@/functions/splash-controller';
 import { NavigationWrapper } from '@/navigation/NavigationWrapper';
 import { I18nextProvider } from 'react-i18next';

@@ -1,10 +1,10 @@
 import { SvgList } from '@/models/svg-uri';
 import { GlobalStyles } from '@/styles/global-styles';
-import { getTokens, useTheme, View } from '@tamagui/core';
 import SvgUri from 'expo-svg-uri';
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Pressable, TextInput } from 'react-native';
+import { getTokens, useTheme, View } from 'tamagui';
 import { InputControlProps } from './input-control-props.type';
 
 export const InputControl: FC<InputControlProps> = ({

@@ -1,4 +1,4 @@
-import { createFont, createTokens } from '@tamagui/core';
+import { createFont, createTokens } from 'tamagui';
 
 export const playFont = createFont({
   family: 'Play_400Regular',
@@ -54,15 +54,14 @@ export const MCTamaguiTokens = createTokens({
     gradientBottomColorDark: '#33127b',
     errorColor: '#FF4047'
   },
-  // margin="$sm"
   space: {
     1: 4,
     2: 8,
     3: 12,
     4: 16,
-    5: 24
+    5: 24,
+    true: 12
   },
-  // radius="$none"
   radius: { none: 0, sm: 3 },
   size: {
     buttonSize: 40

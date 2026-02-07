@@ -1,5 +1,5 @@
-import { Text, View } from '@tamagui/core';
 import { useTranslation } from 'react-i18next';
+import { Text, View } from 'tamagui';
 
 export default function RegistrationScreen() {
   const { t } = useTranslation();
