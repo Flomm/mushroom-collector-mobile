@@ -21,7 +21,8 @@ export const InputControl: FC<InputControlProps> = ({
   hasError = false,
   onSubmitEditing,
   inputRef,
-  secure
+  secure,
+  keyboardType = 'default'
 }) => {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -76,6 +77,8 @@ export const InputControl: FC<InputControlProps> = ({
         onSubmitEditing={onSubmitEditing}
         ref={inputRef}
         secureTextEntry={!inputReadable}
+        autoCapitalize='none'
+        keyboardType={keyboardType}
       />
       {secure && (
         <Pressable testID={`${testID}-secure-pressable`} onPress={() => setInputReadable(prev => !prev)}>
