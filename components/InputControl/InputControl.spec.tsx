@@ -71,6 +71,7 @@ describe('InputControl', () => {
         setValue={mockSetValue}
         testID={mockTestId}
         iconUri='facebook'
+        keyboardType='email-address'
       />
     );
 
