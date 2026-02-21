@@ -1,4 +1,5 @@
 import { SvgName } from '@/models/svg-uri';
+import { StyleProp, ViewStyle } from 'react-native';
 
 export type ButtonComponentProps = {
   text: string;
@@ -10,4 +11,5 @@ export type ButtonComponentProps = {
   loading?: boolean;
   disabled?: boolean;
   accessibilityLabel?: string;
+  styles?: StyleProp<ViewStyle>;
 };
