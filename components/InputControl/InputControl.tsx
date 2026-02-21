@@ -22,7 +22,8 @@ export const InputControl: FC<InputControlProps> = ({
   onSubmitEditing,
   inputRef,
   secure,
-  keyboardType = 'default'
+  keyboardType = 'default',
+  styles
 }) => {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -33,18 +34,18 @@ export const InputControl: FC<InputControlProps> = ({
     <View
       items='center'
       flexDirection='row'
-      paddingStart='$2'
-      paddingEnd='$2'
+      px='$2'
       style={[
         GlobalStyles.shadowWrapper,
         {
           marginVertical,
           borderRadius: getTokens().radius[5].val,
-          height: getTokens().size['$5'].val,
+          height: getTokens().size['$6'].val,
           borderWidth: 1,
           borderColor: hasError ? theme.errorColor.val : theme.primaryTextColor.val,
           shadowColor: theme.shadowColor.val
-        }
+        },
+        styles
       ]}>
       {iconUri && (
         <SvgUri

@@ -1,7 +1,7 @@
 import { ComponentThemeOptions } from '@/models/component-theme-options.type';
 import { SvgName } from '@/models/svg-uri';
 import { RefObject } from 'react';
-import { KeyboardType, TextInput, TextInputSubmitEditingEvent } from 'react-native';
+import { KeyboardType, StyleProp, TextInput, TextInputSubmitEditingEvent, ViewStyle } from 'react-native';
 
 export type InputControlProps = {
   value: string;
@@ -19,4 +19,5 @@ export type InputControlProps = {
   inputRef?: RefObject<TextInput | null>;
   secure?: boolean;
   keyboardType?: KeyboardType;
+  styles?: StyleProp<ViewStyle>;
 };

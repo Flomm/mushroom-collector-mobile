@@ -27,11 +27,12 @@ export const ButtonComponent: FC<ButtonComponentProps> = ({
   text,
   testID,
   type = 'gradient',
-  marginVertical = 8,
+  marginVertical = 14,
   loading = false,
   disabled = false,
   iconUri,
-  accessibilityLabel
+  accessibilityLabel,
+  styles
 }) => {
   const { t } = useTranslation();
   const theme = useTheme();
@@ -51,14 +52,17 @@ export const ButtonComponent: FC<ButtonComponentProps> = ({
 
   return (
     <Pressable
-      style={{
-        marginVertical,
-        height: getTokens().size['$6'].val,
-        borderRadius: getTokens().radius[6].val,
-        borderWidth: type === 'gradient' ? 0 : 1,
-        borderColor: theme.primaryTextColor.val,
-        shadowColor: theme.shadowColor.val
-      }}
+      style={[
+        {
+          marginVertical,
+          height: getTokens().size['$6'].val,
+          borderRadius: getTokens().radius[6].val,
+          borderWidth: type === 'gradient' ? 0 : 1,
+          borderColor: theme.primaryTextColor.val,
+          shadowColor: theme.shadowColor.val
+        },
+        styles
+      ]}
       disabled={disabled || loading}
       onPress={onPress}
       testID={testID}
@@ -77,15 +81,15 @@ export const ButtonComponent: FC<ButtonComponentProps> = ({
               opacity: pressed ? 0.8 : disabled || loading ? 0.5 : 1
             }}
             colors={getGradientColors}>
-            <View flexDirection='row' items='center' width='75%' justify={iconUri ? 'flex-start' : 'center'}>
+            <View flexDirection='row' items='center' justify={iconUri ? 'flex-start' : 'center'}>
               {iconUri && !loading && (
                 <SvgUri
                   testID={`${testID}-icon`}
                   style={{
                     marginEnd: getTokens().space[3].val
                   }}
-                  width={40}
-                  height={40}
+                  width={35}
+                  height={35}
                   fill={type === 'gradient' ? theme.secondaryTextColor.val : theme.primaryTextColor.val}
                   source={SvgList[iconUri]}
                 />
@@ -102,6 +106,7 @@ export const ButtonComponent: FC<ButtonComponentProps> = ({
                   color={type === 'gradient' ? '$secondaryTextColor' : '$primaryTextColor'}
                   fontFamily='$body'
                   fontWeight='700'
+                  flexWrap='wrap'
                   fontSize='$5'>
                   {`  ${t(text)}  `}
                 </Text>

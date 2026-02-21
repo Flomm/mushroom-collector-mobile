@@ -12,7 +12,7 @@ const renderWithContext = (children: ReactElement) => render(<OrientationProvide
 
 const OrientationTestComponent = (): ReactElement => {
   const orientation = useOrientation();
-  return <Text testID='layout-test'>{orientation}</Text>;
+  return <Text testID='layout-test'>{String(orientation)}</Text>;
 };
 
 describe('OrientationContext', () => {
@@ -30,7 +30,7 @@ describe('OrientationContext', () => {
     useWindowDimensionsSpy.mockReturnValue({ width: 20, height: 10 });
     renderWithContext(<OrientationTestComponent />);
     const testText = screen.getByTestId('layout-test');
-    expect(testText).toHaveTextContent('landscape');
+    expect(testText).toHaveTextContent('true');
   });
 
   it('should provide portrait value to children when screen height is bigger than width', () => {
@@ -38,7 +38,7 @@ describe('OrientationContext', () => {
 
     renderWithContext(<OrientationTestComponent />);
     const testText = screen.getByTestId('layout-test');
-    expect(testText).toHaveTextContent('portrait');
+    expect(testText).toHaveTextContent('false');
   });
 
   it('should provide correct value to children when screen height is equal to width', () => {
@@ -46,6 +46,6 @@ describe('OrientationContext', () => {
 
     renderWithContext(<OrientationTestComponent />);
     const testText = screen.getByTestId('layout-test');
-    expect(testText).toHaveTextContent('landscape');
+    expect(testText).toHaveTextContent('true');
   });
 });

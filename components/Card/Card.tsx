@@ -1,7 +1,6 @@
-import { FC, PropsWithChildren } from 'react';
 import { styled, View } from 'tamagui';
 
-const CardComponent = styled(View, {
+export const CardComponent = styled(View, {
   width: '100%',
   bg: '$secondaryBackground',
   shadowColor: '$shadowColor',
@@ -14,9 +13,6 @@ const CardComponent = styled(View, {
   borderTopLeftRadius: '$4',
   borderTopRightRadius: '$4',
   borderBottomLeftRadius: '$4',
-  borderBottomRightRadius: '$4'
+  borderBottomRightRadius: '$4',
+  elevationAndroid: 3
 });
-
-export const Card: FC<PropsWithChildren> = ({ children }) => {
-  return <CardComponent style={{ elevation: 3 }}>{children}</CardComponent>;
-};
