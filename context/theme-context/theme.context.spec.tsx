@@ -19,7 +19,7 @@ describe('ThemeContext', () => {
   });
 
   afterEach(() => {
-    useColorSchemeSpy.mockReset(); // ✅ safe
+    jest.restoreAllMocks();
   });
 
   it('should provide correct value to children with light', () => {
