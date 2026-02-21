@@ -2,14 +2,14 @@ import { mockTestId } from '@/__mocks__/mock-constants';
 import { renderWithTamagui } from '@/__mocks__/tamagui-test-provider';
 import { TestChildComponent } from '@/__mocks__/TestChildComponent';
 import { screen } from '@testing-library/react-native';
-import { Card } from './Card';
+import { CardComponent } from './Card';
 
-describe('Card', () => {
+describe('CardComponent', () => {
   it('should render correctly', () => {
     renderWithTamagui(
-      <Card>
+      <CardComponent>
         <TestChildComponent />
-      </Card>
+      </CardComponent>
     );
 
     const child = screen.getByTestId(mockTestId);
