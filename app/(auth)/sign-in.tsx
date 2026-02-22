@@ -3,6 +3,7 @@ import { CardComponent } from '@/components/Card/Card';
 import { Divider } from '@/components/Divider/Divider';
 import { InputControl } from '@/components/InputControl/InputControl';
 import { ScreenWrapper } from '@/components/ScreenWrapper/ScreenWrapper';
+import { ErrorText } from '@/components/Text/ErrorText';
 import ValidatedController from '@/components/ValidatedController/ValidatedController';
 import { WelcomeMessage } from '@/components/WelcomeMessage/WelcomeMessage';
 import { useAuthContext } from '@/context/auth-context/auth.context';
@@ -16,7 +17,7 @@ import { useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { TextInput } from 'react-native';
-import { getTokens, Text, View } from 'tamagui';
+import { getTokens, View } from 'tamagui';
 
 export default function SignInScreen() {
   const { t } = useTranslation();
@@ -105,9 +106,7 @@ export default function SignInScreen() {
               styles={{ marginTop: 6 }}
             />
 
-            <Text color='$errorColor' fontWeight='700' fontFamily='$body'>
-              {authStateData.authError && t(authStateData.authError)}
-            </Text>
+            <ErrorText>{authStateData.authError && t(authStateData.authError)}</ErrorText>
           </View>
 
           <View flex={1}>
