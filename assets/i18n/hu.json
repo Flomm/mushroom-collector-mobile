@@ -10,6 +10,9 @@
       "email": "E-mail",
       "password": "Jelszó",
       "forgot_password": "Elfelejtett jelszó"
+    },
+    "sign-up": {
+      "sign-up-call": "Regisztáció"
     }
   },
   "validation_errors": {

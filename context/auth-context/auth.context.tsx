@@ -3,6 +3,7 @@ import { isNil } from '@/functions/is-nil';
 import { SignInData } from '@/models/sign-in-data.type';
 import { useSecureStorage } from '@/state/user-storage-state/use-storage-state';
 import {
+  createUserWithEmailAndPassword,
   FirebaseAuthTypes,
   signOut as firebaseSignOut,
   getAuth,
@@ -11,21 +12,23 @@ import {
 } from '@react-native-firebase/auth';
 import { router } from 'expo-router';
 import { createContext, use, useCallback, useEffect, useState, type PropsWithChildren } from 'react';
-import { AuthContextData } from './auth.context-data.type';
+import { AuthContextProviderData } from './auth-context-provider-data.type';
+import { AuthStateData } from './auth-state-data.type';
+import { SignUpStateData } from './sign-up-state-data.type';
 
-const AuthContext = createContext<{
-  signIn: (signInData: SignInData) => Promise<void | FirebaseAuthTypes.UserCredential>;
-  signOut: () => void;
-  signUp: () => void;
-  authStateData: AuthContextData;
-}>({
+const AuthContext = createContext<AuthContextProviderData>({
   signIn: () => Promise.resolve(),
   signOut: () => null,
-  signUp: () => null,
+  signUp: () => Promise.resolve(),
   authStateData: {
     loading: true,
     loggedIn: false,
     authError: null
+  },
+  signUpStateData: {
+    loading: false,
+    success: false,
+    signUpError: null
   }
 });
 
@@ -40,17 +43,22 @@ export function useAuthContext() {
 
 export function AuthProvider({ children }: PropsWithChildren) {
   const { setAuthData } = useSecureStorage();
-  const [authStateData, setAuthStateData] = useState<AuthContextData>({
+  const [authStateData, setAuthStateData] = useState<AuthStateData>({
     loading: true,
     loggedIn: false,
     authError: null
+  });
+  const [signUpStateData, setSignUpStateData] = useState<SignUpStateData>({
+    loading: false,
+    success: false,
+    signUpError: null
   });
 
   const createAuthStateData = (
     loading: boolean,
     loggedIn: boolean,
     authError: string | null = null
-  ): AuthContextData => ({
+  ): AuthStateData => ({
     loading,
     loggedIn,
     authError
@@ -96,6 +104,29 @@ export function AuthProvider({ children }: PropsWithChildren) {
     }
   };
 
+  const signUp = async (signUpData: SignInData): Promise<void> => {
+    try {
+      setSignUpStateData({
+        loading: true,
+        success: false,
+        signUpError: null
+      });
+      await createUserWithEmailAndPassword(getAuth(), signUpData.email, signUpData.password);
+      setSignUpStateData({
+        loading: false,
+        success: true,
+        signUpError: null
+      });
+    } catch (e: any) {
+      const actualErrorCode = handledFireBaseErrors.includes(e.code) ? e.code : 'unknown';
+      setSignUpStateData({
+        loading: false,
+        success: false,
+        signUpError: `firebase_errors:${actualErrorCode}`
+      });
+    }
+  };
+
   const signOut = async (): Promise<void> => {
     setAuthStateData(createAuthStateData(true, true));
     try {
@@ -119,10 +150,9 @@ export function AuthProvider({ children }: PropsWithChildren) {
       value={{
         signIn,
         signOut,
-        signUp: () => {
-          console.warn('SIGNUP');
-        },
-        authStateData
+        signUp,
+        authStateData,
+        signUpStateData
       }}>
       {children}
     </AuthContext.Provider>

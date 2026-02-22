@@ -2,7 +2,7 @@ import { isNil } from '@/functions/is-nil';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View } from 'tamagui';
-import { ErrorText } from '../Text/ErrorText.js';
+import { ErrorText } from '../Text/ErrorText';
 import type { ValidatedControllerProps } from './validated-controller-props.type.ts';
 
 const validationHeight = 20;
