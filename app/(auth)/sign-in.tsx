@@ -115,7 +115,7 @@ export default function SignInScreen() {
 
               <ButtonComponent
                 disabled={authStateData.loading}
-                onPress={() => router.navigate('/(auth)/registration')}
+                onPress={() => router.navigate('/(auth)/sign-up')}
                 testID='signup-button'
                 text='auth:sign-in:sign-up'
                 styles={{ marginTop: 0 }}

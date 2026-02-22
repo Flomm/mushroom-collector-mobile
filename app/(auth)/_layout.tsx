@@ -3,9 +3,9 @@ import React from 'react';
 
 export default function AuthLayout() {
   return (
-    <Stack>
-      <Stack.Screen name='sign-in' options={{ headerShown: false }} />
-      <Stack.Screen name='registration' options={{ headerShown: false }} />
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name='sign-in' />
+      <Stack.Screen name='sign-up' />
     </Stack>
   );
 }
