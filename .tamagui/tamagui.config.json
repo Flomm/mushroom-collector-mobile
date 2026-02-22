@@ -28630,6 +28630,7 @@
         "gradientMidColorDark": "#153b66",
         "gradientBottomColorDark": "#33127b",
         "errorColor": "#FF4047",
+        "successColor": "#28A745",
         "mainBackground": "#000000",
         "secondaryBackground": "#D3D3D3",
         "primaryTextColor": "#FFFFFF",
@@ -28658,6 +28659,7 @@
         "gradientMidColorDark": "#153b66",
         "gradientBottomColorDark": "#33127b",
         "errorColor": "#FF4047",
+        "successColor": "#28A745",
         "mainBackground": "#E8E3d4",
         "secondaryBackground": "#F4EEE3",
         "primaryTextColor": "#77583E",
@@ -29152,6 +29154,13 @@
           "name": "c-errorColor",
           "val": "#FF4047",
           "variable": ""
+        },
+        "successColor": {
+          "isVar": true,
+          "key": "$successColor",
+          "name": "c-successColor",
+          "val": "#28A745",
+          "variable": ""
         }
       },
       "zIndex": {
@@ -29416,6 +29425,13 @@
         "key": "$shadowColorLight",
         "name": "c-shadowColorLight",
         "val": "#000000",
+        "variable": ""
+      },
+      "$color.successColor": {
+        "isVar": true,
+        "key": "$successColor",
+        "name": "c-successColor",
+        "val": "#28A745",
         "variable": ""
       },
       "$radius.0": {

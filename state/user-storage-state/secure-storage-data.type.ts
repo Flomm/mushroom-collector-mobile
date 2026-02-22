@@ -1,4 +1,4 @@
-import { AuthData } from '@/models/auth-data.type';
+import { AuthData } from '@/models/auth/auth-data.type';
 
 export type SecureStoreState = {
   authData: AuthData | null;

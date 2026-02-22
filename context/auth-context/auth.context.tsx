@@ -1,6 +1,6 @@
 import handledFireBaseErrors from '@/constants/firebase-handled-errors';
 import { isNil } from '@/functions/is-nil';
-import { SignInData } from '@/models/sign-in-data.type';
+import { SignInData } from '@/models/auth/sign-in-data.type';
 import { useSecureStorage } from '@/state/user-storage-state/use-storage-state';
 import {
   createUserWithEmailAndPassword,
@@ -8,6 +8,7 @@ import {
   signOut as firebaseSignOut,
   getAuth,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword
 } from '@react-native-firebase/auth';
 import { router } from 'expo-router';
@@ -75,6 +76,12 @@ export function AuthProvider({ children }: PropsWithChildren) {
         handleAuthFailure();
         return;
       }
+
+      if (!user.emailVerified) {
+        setAuthStateData(createAuthStateData(false, false, 'firebase_errors:email_not_verified'));
+        return;
+      }
+
       setAuthData({
         email: user.email,
         idToken: 'test'
@@ -92,6 +99,13 @@ export function AuthProvider({ children }: PropsWithChildren) {
         handleAuthFailure();
         return;
       }
+
+      if (!userResponse.user.emailVerified) {
+        setAuthStateData(createAuthStateData(false, false, 'firebase_errors:email_not_verified'));
+        await firebaseSignOut(getAuth());
+        return;
+      }
+
       setAuthData({
         email: userResponse.user.email,
         idToken: 'test'
@@ -111,13 +125,15 @@ export function AuthProvider({ children }: PropsWithChildren) {
         success: false,
         signUpError: null
       });
-      await createUserWithEmailAndPassword(getAuth(), signUpData.email, signUpData.password);
+      const userData = await createUserWithEmailAndPassword(getAuth(), signUpData.email, signUpData.password);
+      await sendEmailVerification(userData.user);
       setSignUpStateData({
         loading: false,
         success: true,
         signUpError: null
       });
     } catch (e: any) {
+      console.warn(e.code);
       const actualErrorCode = handledFireBaseErrors.includes(e.code) ? e.code : 'unknown';
       setSignUpStateData({
         loading: false,

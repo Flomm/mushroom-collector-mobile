@@ -1,4 +1,4 @@
-import { AuthData } from '@/models/auth-data.type';
+import { AuthData } from '@/models/auth/auth-data.type';
 import * as SecureStore from 'expo-secure-store';
 import { create } from 'zustand';
 import { createJSONStorage, persist, StateStorage } from 'zustand/middleware';

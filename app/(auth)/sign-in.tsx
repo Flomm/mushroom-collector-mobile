@@ -9,7 +9,7 @@ import { WelcomeMessage } from '@/components/WelcomeMessage/WelcomeMessage';
 import { useAuthContext } from '@/context/auth-context/auth.context';
 import { useOrientation } from '@/context/orientation-context/orientation.context';
 import { isNil } from '@/functions/is-nil';
-import { SignInData } from '@/models/sign-in-data.type';
+import { SignInData } from '@/models/auth/sign-in-data.type';
 import { SignInFormSchema } from '@/validation/schemas/sign-in-form.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';

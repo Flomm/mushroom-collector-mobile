@@ -10,9 +10,7 @@ export const WelcomeMessage: FC = () => {
   return (
     <View items='center'>
       <SvgUri testID='welcome-icon' width={120} height={120} source={require('@/assets/icons/app-auth.svg')} />
-      <HeaderText testID='welcome-message' color='$primaryTextColor' fontWeight='700' fontFamily='$body' fontSize='$7'>
-        {`  ${t('auth:sign-in:welcome')}  `}
-      </HeaderText>
+      <HeaderText testID='welcome-message'>{`  ${t('auth:sign-in:welcome')}  `}</HeaderText>
     </View>
   );
 };

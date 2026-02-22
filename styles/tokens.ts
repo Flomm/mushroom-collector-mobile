@@ -52,7 +52,8 @@ export const MCTamaguiTokens = createTokens({
     gradientTopColorDark: '#3c6297',
     gradientMidColorDark: '#153b66',
     gradientBottomColorDark: '#33127b',
-    errorColor: '#FF4047'
+    errorColor: '#FF4047',
+    successColor: '#28A745'
   },
   space: {
     1: 4,

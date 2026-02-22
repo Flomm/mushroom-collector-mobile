@@ -1,4 +1,4 @@
-import { SignInData } from '@/models/sign-in-data.type';
+import { SignInData } from '@/models/auth/sign-in-data.type';
 import { AuthStateData } from './auth-state-data.type';
 import { SignUpStateData } from './sign-up-state-data.type';
 

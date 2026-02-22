@@ -12,15 +12,25 @@
       "forgot_password": "Elfelejtett jelszó"
     },
     "sign-up": {
-      "sign-up-call": "Regisztáció"
+      "sign_up_call": "Regisztráció",
+      "password_confirm": "Jelszó újra",
+      "success": "Sikeres regisztráció. Címedre megerősítő e-mailt küldtünk."
     }
   },
   "validation_errors": {
-    "required": "Kötelező"
+    "required": "Kötelező",
+    "email": "Hibás formátum",
+    "min_length": "Min. {{minLength}} karakter szükséges",
+    "password_mismatch": "A két jelszó nem egyezik",
+    "numeric_needed": "Legalább 1 numerikus karakter szükséges",
+    "special_needed": "Legalább 1 speciális karakter szükséges",
+    "lower_and_upper_case": "Kis- és nagybetű is szükséges"
   },
   "firebase_errors": {
     "auth/invalid-email": "Hibás e-mail formátum",
     "auth/invalid-credential": "Nem megfelelő e-mail vagy jelszó",
-    "unknown": "Váratlan authentikációs hiba"
+    "unknown": "Váratlan authentikációs hiba",
+    "auth/email-already-in-use": "Ez az e-mail már regisztrálva van",
+    "email_not_verified": "Erősítsd meg az email címed"
   }
 }
