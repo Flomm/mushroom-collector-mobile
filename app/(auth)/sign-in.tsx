@@ -4,13 +4,14 @@ import { Divider } from '@/components/Divider/Divider';
 import { InputControl } from '@/components/InputControl/InputControl';
 import { ScreenWrapper } from '@/components/ScreenWrapper/ScreenWrapper';
 import ValidatedController from '@/components/ValidatedController/ValidatedController';
+import { WelcomeMessage } from '@/components/WelcomeMessage/WelcomeMessage';
 import { useAuthContext } from '@/context/auth-context/auth.context';
 import { useOrientation } from '@/context/orientation-context/orientation.context';
 import { isNil } from '@/functions/is-nil';
 import { SignInData } from '@/models/sign-in-data.type';
 import { SignInFormSchema } from '@/validation/schemas/sign-in-form.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import SvgUri from 'expo-svg-uri';
+import { useRouter } from 'expo-router';
 import { useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -21,6 +22,7 @@ export default function SignInScreen() {
   const { t } = useTranslation();
   const { signIn, authStateData } = useAuthContext();
   const isLandscape = useOrientation();
+  const router = useRouter();
 
   const passwordRef = useRef<TextInput | null>(null);
 
@@ -39,12 +41,7 @@ export default function SignInScreen() {
 
   return (
     <ScreenWrapper flexDirection={isLandscape ? 'row' : 'column'}>
-      <View items='center'>
-        <SvgUri width={120} height={120} source={require('@/assets/icons/app-auth.svg')} />
-        <Text color='$primaryTextColor' fontWeight='700' fontFamily='$body' fontSize='$7'>
-          {`  ${t('auth:sign-in:welcome')}  `}
-        </Text>
-      </View>
+      <WelcomeMessage />
       <View flex={1} width='100%' justify='center' py='$2' paddingEnd={isLandscape ? '$5' : 0}>
         <CardComponent
           flex={1}
@@ -103,8 +100,8 @@ export default function SignInScreen() {
             <ButtonComponent
               loading={authStateData.loading}
               onPress={handleSubmit(onSubmit)}
-              testID='login_button'
-              text='auth:sign-in:login'
+              testID='signin-button'
+              text='auth:sign-in:sign-in'
               styles={{ marginTop: 6 }}
             />
 
@@ -119,8 +116,8 @@ export default function SignInScreen() {
 
               <ButtonComponent
                 disabled={authStateData.loading}
-                onPress={() => console.warn('lol')}
-                testID='x'
+                onPress={() => router.navigate('/(auth)/registration')}
+                testID='signup-button'
                 text='auth:sign-in:sign-up'
                 styles={{ marginTop: 0 }}
               />
