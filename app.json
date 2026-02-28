@@ -42,6 +42,15 @@
       "@react-native-firebase/app",
       "@react-native-firebase/auth",
       "@react-native-google-signin/google-signin",
+      [
+        "react-native-fbsdk-next",
+        {
+          "appID": "1436304067886083",
+          "displayName": "Mushroom Collector",
+          "clientToken": "06311856b30100fbf4768e35ec9b8bbd",
+          "scheme": "fb1436304067886083"
+        }
+      ],
       "expo-secure-store",
       "expo-localization",
       "expo-font",
