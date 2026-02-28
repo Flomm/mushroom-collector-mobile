@@ -70,15 +70,24 @@ export function AuthProvider({ children }: PropsWithChildren) {
     authError
   });
 
-  const handleAuthFailure = useCallback(() => {
-    setAuthData(null);
-    setAuthStateData(createAuthStateData(false, false));
-  }, [setAuthData, setAuthStateData]);
+  const handleAuthFailure = useCallback(
+    (persistNotVerifiedError?: boolean) => {
+      setAuthData(null);
+      setAuthStateData(prev =>
+        createAuthStateData(
+          false,
+          false,
+          prev.authError === 'firebase_errors:email_not_verified' && persistNotVerifiedError ? prev.authError : null
+        )
+      );
+    },
+    [setAuthData, setAuthStateData]
+  );
 
   const handleAuthStateChanged = useCallback(
     async (user: FirebaseAuthTypes.User | null) => {
       if (isNil(user)) {
-        handleAuthFailure();
+        handleAuthFailure(true);
         return;
       }
 
@@ -110,12 +119,6 @@ export function AuthProvider({ children }: PropsWithChildren) {
         await firebaseSignOut(getAuth());
         return;
       }
-
-      setAuthData({
-        email: userResponse.user.email,
-        idToken: 'test'
-      });
-      setAuthStateData(createAuthStateData(false, true));
       router.replace('/');
     } catch (e: any) {
       const actualErrorCode = handledFireBaseErrors.includes(e.code) ? e.code : 'unknown';
