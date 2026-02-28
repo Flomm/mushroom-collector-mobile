@@ -1,10 +1,12 @@
 import handledFireBaseErrors from '@/constants/firebase-handled-errors';
 import { handledGoogleSignInErrors } from '@/constants/google-signin-handled-errors';
+import { providerIdsWithVerificationNotNeeded } from '@/constants/provider-ids-with-verification-not-needed';
 import { isNil } from '@/functions/is-nil';
 import { SignInData } from '@/models/auth/sign-in-data.type';
 import { useSecureStorage } from '@/state/user-storage-state/use-storage-state';
 import {
   createUserWithEmailAndPassword,
+  FacebookAuthProvider,
   FirebaseAuthTypes,
   signOut as firebaseSignOut,
   getAuth,
@@ -17,6 +19,7 @@ import {
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { router } from 'expo-router';
 import { createContext, use, useCallback, useEffect, useState, type PropsWithChildren } from 'react';
+import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
 import { AuthContextProviderData } from './auth-context-provider-data.type';
 import { AuthStateData } from './auth-state-data.type';
 import { SignUpStateData } from './sign-up-state-data.type';
@@ -24,6 +27,7 @@ import { SignUpStateData } from './sign-up-state-data.type';
 const AuthContext = createContext<AuthContextProviderData>({
   signIn: () => Promise.resolve(),
   googleSignIn: () => Promise.resolve(),
+  facebookSignIn: () => Promise.resolve(),
   signOut: () => null,
   signUp: () => Promise.resolve(),
   authStateData: {
@@ -91,7 +95,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
         return;
       }
 
-      if (!user.emailVerified) {
+      if (!user.emailVerified && !providerIdsWithVerificationNotNeeded.includes(user.providerData[0].providerId)) {
         setAuthStateData(createAuthStateData(false, false, 'firebase_errors:email_not_verified'));
         return;
       }
@@ -138,6 +142,28 @@ export function AuthProvider({ children }: PropsWithChildren) {
         return;
       }
       setAuthStateData(createAuthStateData(false, false));
+    } catch (e: any) {
+      const actualErrorCode = handledGoogleSignInErrors.includes(e.code) ? e.code : 'unknown';
+      setAuthStateData(createAuthStateData(false, false, `google_sign_in_errors:${actualErrorCode}`));
+    }
+  };
+
+  const facebookSignIn = async () => {
+    try {
+      setAuthStateData(createAuthStateData(true, false));
+      const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+      if (result.isCancelled) {
+        setAuthStateData(createAuthStateData(false, false));
+        return;
+      }
+      const data = await AccessToken.getCurrentAccessToken();
+      if (isNil(data)) {
+        throw new Error('Could not get token');
+      }
+
+      const facebookCredential = FacebookAuthProvider.credential(data.accessToken);
+
+      await signInWithCredential(getAuth(), facebookCredential);
     } catch (e: any) {
       const actualErrorCode = handledGoogleSignInErrors.includes(e.code) ? e.code : 'unknown';
       setAuthStateData(createAuthStateData(false, false, `google_sign_in_errors:${actualErrorCode}`));
@@ -193,6 +219,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       value={{
         signIn,
         googleSignIn,
+        facebookSignIn,
         signOut,
         signUp,
         authStateData,
