@@ -8,7 +8,13 @@ export default function HomeScreen() {
 
   return (
     <ScreenWrapper>
-      <Pressable onPress={signOut}>
+      <Pressable
+        style={{
+          marginTop: 100,
+          padding: 30,
+          backgroundColor: 'red'
+        }}
+        onPress={signOut}>
         <Text>Logout</Text>
       </Pressable>
     </ScreenWrapper>
