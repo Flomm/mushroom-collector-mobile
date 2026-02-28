@@ -21,7 +21,7 @@ import { getTokens, View } from 'tamagui';
 
 export default function SignInScreen() {
   const { t } = useTranslation();
-  const { signIn, authStateData } = useAuthContext();
+  const { signIn, authStateData, googleSignIn } = useAuthContext();
   const isLandscape = useOrientation();
   const router = useRouter();
 
@@ -125,7 +125,7 @@ export default function SignInScreen() {
               <ButtonComponent
                 disabled={authStateData.loading}
                 type='plain'
-                onPress={() => console.warn('lol')}
+                onPress={googleSignIn}
                 testID='x'
                 iconUri='google'
                 text='auth:sign-in:google'

@@ -32,5 +32,11 @@
     "unknown": "Váratlan authentikációs hiba",
     "auth/email-already-in-use": "Ez az e-mail már regisztrálva van",
     "email_not_verified": "Erősítsd meg az email címed"
+  },
+  "google_sign_in_errors": {
+    "SIGN_IN_CANCELLED": "A felhasználó megszakította a bejelentkezést",
+    "IN_PROGRESS": "Már folyik egy bejelentkezés",
+    "PLAY_SERVICES_NOT_AVAILABLE": "Az eszköz nem támogatja a Google szolgáltatásokat",
+    "unknown": "Váratlan Google authentikációs hiba"
   }
 }
