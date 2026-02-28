@@ -21,7 +21,7 @@ import { getTokens, View } from 'tamagui';
 
 export default function SignInScreen() {
   const { t } = useTranslation();
-  const { signIn, authStateData, googleSignIn } = useAuthContext();
+  const { signIn, authStateData, googleSignIn, facebookSignIn } = useAuthContext();
   const isLandscape = useOrientation();
   const router = useRouter();
 
@@ -133,7 +133,8 @@ export default function SignInScreen() {
               />
               <ButtonComponent
                 disabled={authStateData.loading}
-                onPress={() => console.warn('lol')}
+                type='plain'
+                onPress={facebookSignIn}
                 testID='x'
                 text='auth:sign-in:facebook'
                 iconUri='facebook'
